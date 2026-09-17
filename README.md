@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/firebox-logo.svg" alt="Kingred Bot Banner" width="100%">
+  <img src="assets/kingred-logo.svg" alt="Kingred Bot Banner" width="100%">
 </p>
 
 <p align="center">
@@ -17,13 +17,13 @@ Stay updated, ask questions, and chat with other users by joining our official g
 **[Join Kingred Bot Support Group](https://whatsapp.com/channel/0029Vb9AwScF6sn47ClubG1Z,)**
 
 ### <img src="https://img.icons8.com/color/28/star.png" width="18"/> Support the Project
-If you like Firebox Bot, please take a moment to support the repository:
+If you like Kingred Bot, please take a moment to support the repository:
 - **Star the Repo**: Click the star button at the top right of this page to show your love!
 - **Fork the Repo**: Click the fork button to clone it into your own account and customize it.
 
 ---
 
-## <img src="https://img.icons8.com/color/28/rocket.png" width="22"/> Deploy Firebox Bot
+## <img src="https://img.icons8.com/color/28/rocket.png" width="22"/> Deploy Kingred Bot
 
 <p align="center">
   <a href="https://railway.app/new/template?template=https://github.com/njogu26713-commits/firebox-bot">
