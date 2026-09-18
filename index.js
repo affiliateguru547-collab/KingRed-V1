@@ -76,3 +76,33 @@ app.post("/api/pair", async (req,res)=>{
 });
 
 app.listen(PORT,()=>console.log("RUNNING "+PORT));
+// REAL BOT - stays active after pair
+async function startBot(token) {
+  let phone = DB[token];
+  let dir = './session_' + token;
+  const {state, saveCreds} = await useMultiFileAuthState(dir);
+  const sock = makeWASocket({
+    auth: {creds: state.creds, keys: makeCacheableSignalKeyStore(state.keys, P({level:"silent"}))},
+    logger: P({level:"silent"}),
+    browser: ["KingRed", "Chrome", "1.0"]
+  });
+  sock.ev.on("creds.update", saveCreds);
+
+  sock.ev.on("connection.update", (u) => {
+    if(u.connection === "open") console.log("BOT ACTIVE for", phone);
+    if(u.connection === "close") {
+      console.log("Reconnecting...");
+      setTimeout(() => startBot(token), 3000);
+    }
+  });
+
+  // YOUR BOT COMMANDS HERE - bot will reply even if your phone is off
+  sock.ev.on("messages.upsert", async (m) => {
+    let msg = m.messages[0];
+    if(!msg.message) return;
+    let text = msg.message.conversation || msg.message.extendedTextMessage?.text || "";
+    if(text.toLowerCase() === "ping") {
+      await sock.sendMessage(msg.key.remoteJid, {text: "Pong! Bot is active 24/7 🔥"});
+    }
+  });
+}
