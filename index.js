@@ -2,28 +2,28 @@ const express = require("express");
 const app = express();
 const { default: makeWASocket, useMultiFileAuthState } = require("@whiskeysockets/baileys");
 const P = require("pino");
-const qrcode = require("qrcode-terminal");
+const QRCode = require("qrcode");
 
 const PORT = process.env.PORT || 3000;
-app.get("/", (req,res)=> res.send("KingRed V1 is Online ✅"));
-app.listen(PORT, ()=> console.log("Web server on port "+PORT));
+let lastQR = "";
+
+app.get("/", (req,res)=> {
+  if(!lastQR) return res.send("KingRed V1 is Online ✅<br><br>Waiting for QR... refresh in 5 seconds. Or check Render logs.");
+  res.send(`<h2>KingRed V1 - Scan QR</h2><img src="${lastQR}"><br><p>Open WhatsApp > Linked Devices > Link Device > Scan</p>`);
+});
+
+app.listen(PORT, ()=> console.log("Web on "+PORT));
 
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState('./auth');
-  const sock = makeWASocket({
-    logger: P({ level: "silent" }),
-    auth: state,
-    printQRInTerminal: false
-  });
+  const sock = makeWASocket({ logger: P({ level: "silent" }), auth: state });
   sock.ev.on("creds.update", saveCreds);
-  
-  sock.ev.on("connection.update", async (update)=>{
-    const { connection, qr } = update;
-    if(qr){
-      console.log("SCAN THIS QR ON WHATSAPP:");
-      qrcode.generate(qr, {small:true});
+  sock.ev.on("connection.update", async (u)=>{
+    if(u.qr){
+      lastQR = await QRCode.toDataURL(u.qr);
+      console.log("New QR generated - check website!");
     }
-    if(connection === "open") console.log("KingRed V1 Connected ✅");
+    if(u.connection==="open") console.log("Connected!");
   });
 }
 start();
