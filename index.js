@@ -1,29 +1,29 @@
+const express = require("express");
+const app = express();
 const { default: makeWASocket, useMultiFileAuthState } = require("@whiskeysockets/baileys");
 const P = require("pino");
-const config = require("./config");
+const qrcode = require("qrcode-terminal");
+
+const PORT = process.env.PORT || 3000;
+app.get("/", (req,res)=> res.send("KingRed V1 is Online ✅"));
+app.listen(PORT, ()=> console.log("Web server on port "+PORT));
 
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState('./auth');
   const sock = makeWASocket({
     logger: P({ level: "silent" }),
-    printQRInTerminal: true,
     auth: state,
-    syncFullHistory: false,
-    markOnlineOnConnect: false
+    printQRInTerminal: false
   });
   sock.ev.on("creds.update", saveCreds);
-  sock.ev.on("messages.upsert", async ({ messages }) => {
-    const m = messages[0];
-    if (!m.message || m.key.fromMe) return;
-    const text = m.message.conversation || m.message.extendedTextMessage?.text || "";
-    if (!text.startsWith(config.prefix)) return;
-    const cmd = text.slice(1).toLowerCase();
-    if (cmd === "owner") {
-      await sock.sendMessage(m.key.remoteJid, { text: `👑 *${config.name}*\nOwner: ${config.ownerName}\nCompany: ${config.company}\nNumber: +${config.number}` });
+  
+  sock.ev.on("connection.update", async (update)=>{
+    const { connection, qr } = update;
+    if(qr){
+      console.log("SCAN THIS QR ON WHATSAPP:");
+      qrcode.generate(qr, {small:true});
     }
-    if (cmd === "ping") {
-      await sock.sendMessage(m.key.remoteJid, { text: "⚡ King Red is alive! Fast!" });
-    }
+    if(connection === "open") console.log("KingRed V1 Connected ✅");
   });
 }
 start();
