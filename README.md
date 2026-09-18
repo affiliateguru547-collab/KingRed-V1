@@ -1,51 +1,50 @@
-<svg width="100%" height="120" viewBox="0 0 800 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FF6A00" />
-      <stop offset="50%" stop-color="#FF0080" />
-      <stop offset="100%" stop-color="#FF6A00" />
-    </linearGradient>
-    <filter id="glow" x="-30%" y="-30%" width="150%" height="160%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
-  <style>
-    @keyframes blink {
-      0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px #FF6A00); }
-      50% { opacity: 0.4; filter: drop-shadow(0 0 2px #FF0080); }
-    }
-    @keyframes move {
-      0% { transform: translateX(0px); }
-      50% { transform: translateX(8px); }
-      100% { transform: translateX(0px); }
-    }
-    .animated-text {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      font-weight: 900;
-      font-size: 52px;
-      fill: url(#glowGrad);
-      animation: blink 2s infinite ease-in-out, move 4s infinite ease-in-out;
-    }
-    .sub-text {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      fill: #A0AEC0;
-      letter-spacing: 6px;
-    }
-  </style>
-  <rect width="100%" height="100%" rx="12" fill="#0D0E15" />
-  <g transform="translate(40, 20)">
-    <!-- Animated Flame Icon -->
-    <g transform="translate(0, 20)">
-      <text font-size="56" y="56">🔥</text>
-    </g>
-    <!-- Text group -->
-    <text x="65" y="52" class="animated-text">🔥 KINGRED BOT</text>
-    <text x="68" y="70" class="sub-text">THE ULTIMATE WHATSAPP POWER-BOT</text>
-  </g>
-</svg>
+<p align="center">
+  <img src="assets/KINGRED👑-logo.svg" alt="Kingred Bot Banner" width="100%">
+</p>
+
+<p align="center">
+  <marquee behavior="alternate" scrollamount="2" width="60%">
+    <font color="#00e5ff" size="3"><b>✨ ONLINE ✨</b></font>
+  </marquee>
+</p>
+
+---
+
+## <img src="https://img.icons8.com/color/28/group.png" width="22"/> Join Our Community & Show Your Support
+
+### <img src="https://img.icons8.com/color/28/whatsapp.png" width="18"/> Official WhatsApp Group
+Stay updated, ask questions, and chat with other users by joining our official group:
+**[Join Kingred Bot Support Group](https://whatsapp.com/channel/0029Vb9AwScF6sn47ClubG1Z,)**
+
+### <img src="https://img.icons8.com/color/28/star.png" width="18"/> Support the Project
+If you like Kingred Bot, please take a moment to support the repository:
+- **Star the Repo**: Click the star button at the top right of this page to show your love!
+- **Fork the Repo**: Click the fork button to clone it into your own account and customize it.
+
+---
+
+## <img src="https://img.icons8.com/color/28/rocket.png" width="22"/> Deploy Kingred Bot
+
+<p align="center">
+  <a href="https://railway.app/new/template?template=https://github.com/njogu26713-commits/firebox-bot">
+    <img src="https://railway.app/button.svg" alt="Deploy on Railway" height="40">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://heroku.com/deploy?template=https://github.com/njogu26713-commits/firebox-bot">
+    <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy on Heroku" height="40">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://render.com/deploy?repo=https://github.com/njogu26713-commits/firebox-bot">
+    <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy on Render" height="40">
+  </a>
+</p>
+
+---
+
+## <img src="https://img.icons8.com/color/28/scales.png" width="22"/> Legal & Disclaimer
+
+The developers of Kirebox Bot are not responsible for any damage, account bans, data loss, or legal actions resulting from the use of this software. By deploying or using this code, you agree to take full responsibility for your actions and abide by local regulations and terms of service.
+
+This bot is NOT officially authorized, endorsed, or affiliated with WhatsApp Inc. or Meta Platforms, Inc. Use responsibly and at your own risk.
+
+Copyright &copy; 2026 Kingred Studios. All rights reserved.
